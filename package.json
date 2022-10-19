@@ -13,6 +13,9 @@
   "author": "Tim Huynh",
   "license": "ISC",
   "devDependencies": {
+    "@commitlint/cli": "^17.1.2",
+    "@commitlint/config-conventional": "^17.1.0",
+    "husky": "^8.0.1",
     "typescript": "^4.8.4"
   }
 }
