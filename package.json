@@ -4,7 +4,6 @@
   "description": "lambda with typescript template",
   "main": "index.js",
   "scripts": {
-    "dev": "npm run build:dev",
     "build:dev": "webpack --config webpack.config.dev.js",
     "build": "webpack --config webpack.config.prod.js",
     "tsc": "tsc",
