@@ -10,7 +10,7 @@
   "license": "ISC",
   "repository": "https://github.com/TimHuynh0905/lambda-ts",
   "scripts": {
-    "build:image": "sam validate && sam build",
+    "build": "sam validate && sam build",
     "build:prod": "webpack --config webpack.config.prod.js",
     "build:dev": "webpack --watch --config webpack.config.dev.js",
     "sam:dev": "sam local start-api --template template.dev.yml",
