@@ -1,0 +1,40 @@
+AWSTemplateFormatVersion: "2010-09-09"
+
+Description:
+  - lambda-ts DEV template
+
+Transform:
+  - AWS::Serverless-2016-10-31
+
+Globals:
+  Function:
+    CodeUri: build/
+    Runtime: nodejs14.x
+    Timeout: 300
+
+Resources:
+  FunctionA:
+    Type: AWS::Serverless::Function
+    Properties:
+      Architectures:
+        - x86_64
+      Handler: functionA.handler
+      Events:
+        LambdaTs:
+          Type: Api
+          Properties:
+            Path: /func-a
+            Method: GET
+
+  FunctionB:
+    Type: AWS::Serverless::Function
+    Properties:
+      Architectures:
+        - x86_64
+      Handler: functionB.handler
+      Events:
+        LambdaTs:
+          Type: Api
+          Properties:
+            Path: /func-b
+            Method: GET

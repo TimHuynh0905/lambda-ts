@@ -1,15 +1,12 @@
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 const path = require("path");
 
 module.exports = {
   target: "node14",
+
   context: __dirname,
-  entry: "./src/index.ts",
-  output: {
-    filename: "index.js",
-    path: path.resolve(__dirname, "dist"),
-    libraryTarget: "commonjs",
-  },
+
   module: {
     rules: [
       {
@@ -19,8 +16,10 @@ module.exports = {
       },
     ],
   },
+
   resolve: {
     extensions: [".ts", ".tsx", ".js"],
   },
+
   plugins: [new CleanWebpackPlugin()],
 };
