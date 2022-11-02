@@ -1,7 +1,6 @@
 AWSTemplateFormatVersion: "2010-09-09"
 
-Description:
-  - lambda-ts DEV template
+Description: "lambda-ts DEV template"
 
 Transform:
   - AWS::Serverless-2016-10-31

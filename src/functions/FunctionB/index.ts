@@ -5,5 +5,5 @@ export const handler = async (
   event: APIGatewayEvent,
   context: Context
 ): Promise<APIGatewayProxyResult> => {
-  return buildResponse("Function B-1");
+  return buildResponse("Function B");
 };
