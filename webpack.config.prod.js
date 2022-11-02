@@ -18,8 +18,6 @@ module.exports = (env) => {
 
     output: output,
 
-    devtool: "source-map",
-
     externals: ["aws-sdk"],
   });
 };

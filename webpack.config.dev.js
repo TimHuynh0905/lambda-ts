@@ -7,8 +7,8 @@ module.exports = merge(base, {
   mode: "development",
 
   entry: {
-    functionA: "./src/functions/FunctionA/index.ts",
-    functionB: "./src/functions/FunctionB/index.ts",
+    summation: "./src/functions/Summation/index.ts",
+    subtraction: "./src/functions/Subtraction/index.ts",
   },
 
   output: {

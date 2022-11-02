@@ -5,5 +5,6 @@ export const handler = async (
   event: APIGatewayEvent,
   context: Context
 ): Promise<APIGatewayProxyResult> => {
-  return buildResponse("Function A");
+  const { a, b } = JSON.parse(event.body || "{}");
+  return buildResponse(a - b);
 };
