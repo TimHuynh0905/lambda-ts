@@ -11,14 +11,11 @@
   "repository": "https://github.com/TimHuynh0905/lambda-ts",
   "scripts": {
     "build": "sam validate && sam build",
-    "build:prod": "webpack --config webpack.config.prod.js",
-    "build:dev": "webpack --config webpack.config.dev.js",
-    "sam:start": "sam local start-api",
-    "sam:dev": "npm run sam:start -- --template template.dev.yml",
-    "dev": "concurrently \"npm run build:dev -- --watch\" \"npm run sam:dev\"",
+    "build:prod": "webpack --mode production",
+    "build:dev": "webpack --mode development",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "dependencies": {
     "aws-sdk": "^2.1238.0"
