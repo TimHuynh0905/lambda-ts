@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: "2010-09-09"
 
-Description: "lambda-ts DEV template"
+Description: "lambda-ts template"
 
 Transform:
   - AWS::Serverless-2016-10-31
@@ -20,3 +20,8 @@ Resources:
       PackageType: Zip
       FunctionName: "lambdaTs_demo"
       Handler: index.handler
+      Events:
+        Type: Api
+        Properties:
+          Method: get
+          Path: /lambdats
