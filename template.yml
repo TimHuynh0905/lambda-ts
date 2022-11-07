@@ -1,47 +1,27 @@
 AWSTemplateFormatVersion: "2010-09-09"
 
-Description: "lambda-ts"
+Description: "lambda-ts template"
 
 Transform:
   - AWS::Serverless-2016-10-31
 
-Resources:
-  LambdaTsSummation:
-    Type: AWS::Serverless::Function
-    Properties:
-      PackageType: Image
-      ImageUri: 844514465913.dkr.ecr.us-east-1.amazonaws.com/lambda-ts
-      Architectures:
-        - x86_64
-      Events:
-        LambdaTs:
-          Type: Api
-          Properties:
-            Path: /sum
-            Method: GET
-    Metadata:
-      Dockerfile: Dockerfile
-      DockerContext: ./
-      DockerBuildArgs:
-        ENTRY: "./src/functions/Summation/index.ts"
-      DockerTag: v1
+Globals:
+  Function:
+    CodeUri: build/
+    Runtime: nodejs14.x
+    Timeout: 300
+    Architectures:
+      - x86_64
 
-  LambdaTsSubtraction:
+Resources:
+  LambdaTs:
     Type: AWS::Serverless::Function
     Properties:
-      PackageType: Image
-      ImageUri: 844514465913.dkr.ecr.us-east-1.amazonaws.com/lambda-ts
-      Architectures:
-        - x86_64
+      PackageType: Zip
+      FunctionName: "lambdaTs_demo"
+      Handler: index.handler
       Events:
-        LambdaTs:
-          Type: Api
-          Properties:
-            Path: /subtract
-            Method: GET
-    Metadata:
-      Dockerfile: Dockerfile
-      DockerContext: ./
-      DockerBuildArgs:
-        ENTRY: "./src/functions/Subtraction/index.ts"
-      DockerTag: v1
+        Type: Api
+        Properties:
+          Method: get
+          Path: /lambdats
