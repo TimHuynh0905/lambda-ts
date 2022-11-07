@@ -1,23 +1,42 @@
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const path = require("path");
 
-module.exports = {
-  target: "node14",
+module.exports = (env, arg) => {
+  const mode = arg.mode === "development" ? "development" : "production";
 
-  context: __dirname,
+  return {
+    target: "node14",
 
-  module: {
-    rules: [
-      {
-        test: /\.ts$/,
-        loader: "ts-loader",
-        exclude: /node_modules/,
-      },
-    ],
-  },
+    mode: mode,
 
-  resolve: {
-    extensions: [".ts", ".tsx", ".js"],
-  },
+    context: __dirname,
 
-  plugins: [new CleanWebpackPlugin()],
+    entry: "./src/index.ts",
+
+    output: {
+      filename: "index.js",
+      path: path.resolve(__dirname, "build"),
+      libraryTarget: "commonjs2",
+    },
+
+    module: {
+      rules: [
+        {
+          test: /\.ts$/,
+          loader: "ts-loader",
+          exclude: /node_modules/,
+        },
+      ],
+    },
+
+    resolve: {
+      extensions: [".ts", ".tsx", ".js"],
+    },
+
+    devtool: mode === "development" ? "inline-source-map" : "source-map",
+
+    externals: mode === "development" ? [] : ["aws-sdk"],
+
+    plugins: [new CleanWebpackPlugin()],
+  };
 };

@@ -1,13 +1,12 @@
 FROM public.ecr.aws/lambda/nodejs:14 as builder
+ARG ENTRY
 WORKDIR /usr/app
 COPY package.json ./
 COPY tsconfig.json ./
 COPY webpack.config.js ./
-COPY webpack.config.prod.js ./
 COPY src/ ./src/
-ARG ENTRY
 RUN npm install
-RUN npm run build:prod -- --env ENTRY=$ENTRY
+RUN npm run build:prod
 
 
 FROM public.ecr.aws/lambda/nodejs:14
