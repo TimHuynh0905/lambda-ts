@@ -7,16 +7,15 @@ import {
 } from "./utils";
 import { UserProfileInput, UserProfile } from "./types";
 
-export const handler = async (
-  event: APIGatewayEvent,
-  context: Context
-): Promise<APIGatewayProxyResult> => {
+export const resolver = (
+  rawProfile: UserProfileInput
+): APIGatewayProxyResult => {
   const { firstName, lastName, emailAddress, phoneNumber }: UserProfileInput =
-    JSON.parse(event.body || "{}");
+    rawProfile;
 
-  const statusCode: number = resolveStatusCode(firstName || "", lastName || "");
-  const resolvedEmail: string = resolveEmailAddress(emailAddress || "");
-  const resolvedPhone: string = resolvePhoneAddress(phoneNumber || "");
+  const statusCode: number = resolveStatusCode(firstName, lastName);
+  const resolvedEmail: string = resolveEmailAddress(emailAddress);
+  const resolvedPhone: string = resolvePhoneAddress(phoneNumber);
 
   const profile: UserProfile = {
     fullName: `${firstName} ${lastName}`,
@@ -25,4 +24,12 @@ export const handler = async (
   };
 
   return buildResponse(profile, statusCode);
+};
+
+/* istanbul ignore next */
+export const handler = async (
+  event: APIGatewayEvent,
+  context: Context
+): Promise<APIGatewayProxyResult> => {
+  return resolver(JSON.parse(event.body || "{}") as UserProfileInput);
 };
