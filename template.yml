@@ -21,7 +21,8 @@ Resources:
       FunctionName: "lambdaTs_demo"
       Handler: index.handler
       Events:
-        Type: Api
-        Properties:
-          Method: get
-          Path: /lambdats
+        ApiEvent:
+          Type: Api
+          Properties:
+            Method: get
+            Path: /lambdats
