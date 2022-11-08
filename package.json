@@ -10,8 +10,7 @@
   "license": "ISC",
   "repository": "https://github.com/TimHuynh0905/lambda-ts",
   "scripts": {
-    "build": "npm run build:prod && sam validate && sam build",
-    "build:prod": "webpack --mode production",
+    "build": "webpack --mode production",
     "build:dev": "webpack --mode development",
     "dev": "concurrently \"npm run build:dev -- --watch\" \"sam local start-api\"",
     "format": "prettier --write .",
