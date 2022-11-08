@@ -3,3 +3,5 @@ dist
 build
 .aws-sam
 .vscode
+coverage
+.DS_Store
