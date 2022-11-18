@@ -1,14 +1,38 @@
-version: 0.1
+version: 0.2
+
+env:
+  variables:
+    ARTIFACT_NAME: "LambdaTs"
+    ARTIFACT_BUCKET: "lambda-ts-artifacts"
+    # LAMBDA_FUNCTION: ""
+
 phases:
   pre_build:
+    on-failure: ABORT
     commands:
-      - echo Installing source NPM dependencies...
+      - echo Running PRE_BUILD phase on `date`
+      - echo Installing NPM dependencies ...
       - npm install
+
   build:
+    on-failure: ABORT
     commands:
-      - echo Building source code...
+      - echo Running BUILD phase on `date`
+      - echo Running unit tests ...
+      - npm run test
+      - echo Building TypeScript code ...
       - npm run build
-artifacts:
-  files:
-    - "**/*"
-  base-directory: build
+      - echo Compressing build artifacts into ${ARTIFACT_NAME} ...
+      - export BUILD_ARTIFACT="${ARTIFACT_NAME}__`date +%m-%d-%Y-%H-%M-%S`.zip"
+      - zip -r ${BUILD_ARTIFACT} ./build/*
+      - echo Uploading build artifacts to Amazon S3 bucket at ${ARTIFACT_BUCKET} ...
+      - aws s3api put-object --bucket ${ARTIFACT_BUCKET} --key ${BUILD_ARTIFACT} --body ${BUILD_ARTIFACT}
+
+  post_build:
+    on-failure: ABORT
+    commands:
+      - echo Running POST_BUILD phase on `date`
+      - echo ${BUILD_ARTIFACT}
+      # - echo Updating ${LAMBDA_FUNCTION} lambda function ...
+      # - aws lambda update-function-code --function-name ${LAMBDA_FUNCTION} --s3-bucket ${ARTIFACT_BUCKET} --s3-key ${OUTPUT_ZIP}
+      # - echo Build process completed on `date`
