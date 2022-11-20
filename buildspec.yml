@@ -4,7 +4,7 @@ env:
   variables:
     ARTIFACT_NAME: "LambdaTs"
     ARTIFACT_BUCKET: "lambda-ts-artifacts"
-    # LAMBDA_FUNCTION: ""
+    LAMBDA_FUNCTION: "LambdaTs"
 
 phases:
   pre_build:
@@ -33,6 +33,6 @@ phases:
     commands:
       - echo Running POST_BUILD phase on `date`
       - echo ${BUILD_ARTIFACT}
-      # - echo Updating ${LAMBDA_FUNCTION} lambda function ...
-      # - aws lambda update-function-code --function-name ${LAMBDA_FUNCTION} --s3-bucket ${ARTIFACT_BUCKET} --s3-key ${OUTPUT_ZIP}
-      # - echo Build process completed on `date`
+      - echo Updating ${LAMBDA_FUNCTION} function ...
+      - aws lambda update-function-code --function-name ${LAMBDA_FUNCTION} --s3-bucket ${ARTIFACT_BUCKET} --s3-key ${BUILD_ARTIFACT}
+      - echo Build process completed on `date`
