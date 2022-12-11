@@ -5,3 +5,11 @@ build
 .vscode
 coverage
 .DS_Store
+
+terraform/.terraform*
+terraform/*.tfstate
+terraform/*.tfstate.*
+terraform/*.tfvars
+terraform/*.tfvars.json
+terraform/*.zip
+terraform/*.zip

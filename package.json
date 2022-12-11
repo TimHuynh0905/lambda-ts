@@ -15,7 +15,8 @@
     "dev": "concurrently \"npm run build:dev -- --watch\" \"sam local start-api\"",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "test": "jest"
+    "test": "jest",
+    "prepare": "husky install"
   },
   "dependencies": {
     "aws-sdk": "^2.1238.0"
