@@ -7,8 +7,8 @@ terraform {
   }
 }
 
-provider "aws" {
-  region = "us-east-1"
+variable "AWS_REGION" {
+  type = string
 }
 
 variable "AWS_ACCOUNT_ID" {
@@ -17,4 +17,8 @@ variable "AWS_ACCOUNT_ID" {
 
 variable "LAMBDA_FUNCTION_NAME" {
   type = string
+}
+
+provider "aws" {
+  region = var.AWS_REGION
 }

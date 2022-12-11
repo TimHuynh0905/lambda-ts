@@ -87,8 +87,8 @@ resource "aws_iam_role_policy" "codebuild_policy" {
           "logs:CreateLogStream"
         ],
         Resource = [
-          "arn:aws:logs:us-east-1:${var.AWS_ACCOUNT_ID}:log-group:/aws/codebuild/${aws_codebuild_project.codebuild_project.name}",
-          "arn:aws:logs:us-east-1:${var.AWS_ACCOUNT_ID}:log-group:/aws/codebuild/${aws_codebuild_project.codebuild_project.name}:*"
+          "arn:aws:logs:${var.AWS_REGION}:${var.AWS_ACCOUNT_ID}:log-group:/aws/codebuild/${aws_codebuild_project.codebuild_project.name}",
+          "arn:aws:logs:${var.AWS_REGION}:${var.AWS_ACCOUNT_ID}:log-group:/aws/codebuild/${aws_codebuild_project.codebuild_project.name}:*"
         ]
       },
       {
@@ -150,8 +150,8 @@ resource "aws_iam_role_policy" "lambda_function_policy" {
           "logs:PutLogEvents"
         ],
         Resource = [
-          "arn:aws:logs:us-east-1:${var.AWS_ACCOUNT_ID}:log-group:/aws/lambda/${aws_lambda_function.lambda_function.function_name}",
-          "arn:aws:logs:us-east-1:${var.AWS_ACCOUNT_ID}:log-group:/aws/lambda/${aws_lambda_function.lambda_function.function_name}:*"
+          "arn:aws:logs:${var.AWS_REGION}:${var.AWS_ACCOUNT_ID}:log-group:/aws/lambda/${aws_lambda_function.lambda_function.function_name}",
+          "arn:aws:logs:${var.AWS_REGION}:${var.AWS_ACCOUNT_ID}:log-group:/aws/lambda/${aws_lambda_function.lambda_function.function_name}:*"
         ]
       }
     ]
