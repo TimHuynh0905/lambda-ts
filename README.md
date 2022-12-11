@@ -125,6 +125,16 @@ export DOCKER_HOST=unix:///.../docker.sock
 AWS_REGION = "{{region}}"
 AWS_ACCOUNT_ID = "{{ID of AWS account}}"
 LAMBDA_FUNCTION_NAME = "{{name of lambda function}}"
+
+# Before deployment
+cd terraform
+terraform init
+chmod +x ./apply.sh
+
+# Run deployment
+./apply.sh
+# OR
+terraform apply -var-file="variables.tfvars"
 ```
 
 <h2>Author</h2>
