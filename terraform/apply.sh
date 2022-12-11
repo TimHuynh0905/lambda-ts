@@ -1,0 +1,1 @@
+terraform apply -var="LAMBDA_FUNCTION_NAME=[YOUR_LAMBDA_FUNCTION_NAME]"
