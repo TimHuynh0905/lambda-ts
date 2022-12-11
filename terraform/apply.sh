@@ -1,1 +1,1 @@
-terraform apply -var="LAMBDA_FUNCTION_NAME=[YOUR_LAMBDA_FUNCTION_NAME]"
+terraform apply -var-file="variables.tfvars"

@@ -11,7 +11,10 @@ provider "aws" {
   region = "us-east-1"
 }
 
+variable "AWS_ACCOUNT_ID" {
+  type = string
+}
+
 variable "LAMBDA_FUNCTION_NAME" {
-  type    = string
-  default = "my_lambda_function"
+  type = string
 }
