@@ -1,6 +1,7 @@
 # Ignore artifacts:
-node_modules
-build
-dist
-coverage
-.husky
+node_modules/
+build/
+dist/
+coverage/
+.husky/
+terraform/
