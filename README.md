@@ -14,7 +14,9 @@
 
 <p>I truly believe this template can help you focus more on the coding process and be less worried about the underlying infrastructure.</p>
 
-<!-- <h3>Architecture</h3> -->
+<h3>Architecture</h3>
+
+<img src="./docs/architecture.png"/>
 
 <h2>Getting Started</h2>
 
@@ -73,9 +75,13 @@ npm install
 npm run dev
 ```
 
-<p><code>npm run dev</code> runs <code>webpack --watch</code> and <code>sam local start-api</code> concurrently. Webpack watches for changes under <code>src/</code> and bundles to <code>build/</code>, which in turn is monitored by <code>sam-cli</code></p>
+<p><code>npm run dev</code> runs <code>webpack --watch</code> and <code>sam local start-api</code> concurrently. Webpack watches for changes to TypeScript code under <code>src/</code> and updates the JavaScript bundle under <code>build/</code>. <code>sam local start-api</code> automatically refers to these changes and reloads local server.</p>
 
-<p><b>Note:</b> Live-reloading requires <b>Docker</b> to run in the background.</p>
+<p>Finally, this process achieves my desired live-reloading feature for developing and testing AWS Lambda function locally with TypeScript. Learn more <a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-using-start-api.html">here</a>.</p>
+
+<p>Developer should leverage <code>AWS SAM CLI</code> functionalities to work with AWS Lambda functions and other Serverless resources.</p>
+
+<p><b>Note:</b> Live-reloading requires <b>Docker</b> to run in the background to simulate AWS Lambda runtime environment.</p>
 
 <h3>Testing</h3>
 
@@ -98,7 +104,7 @@ Docker error: "Cannot connect to the Docker daemon. Is the docker daemon running
 
 <p>
   1. Make sure <b>Docker</b> is running</li><br>
-  2. Make sure <code>sam-cli</code> can communicate with <code>docker daemon</code> by exporting <code>DOCKER_HOST</code> is exported to your local machine's <code>env</code>. <code>DOCKER_HOST</code>(i.e. <code>docker.sock</code>) is the UNIX socket that Docker daemon is listening to.
+  2. Make sure <code>sam-cli</code> can communicate with <code>docker daemon</code> by exporting <code>DOCKER_HOST</code> to your local machine's <code>env</code>. <code>DOCKER_HOST</code>(i.e. <code>docker.sock</code>) is the UNIX socket that Docker daemon is listening to.
 </p>
 
 ```sh
